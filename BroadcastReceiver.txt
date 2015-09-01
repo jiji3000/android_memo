@@ -1,0 +1,21 @@
+private BroadcastReceiver homeKeyPressReceiver;
+private final Application application
+
+// register
+        if (homeKeyPressReceiver != null) {
+            return;
+        }
+        IntentFilter iFilter = new IntentFilter();
+        iFilter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+        homeKeyPressReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                sendAndClear();
+            }
+        };
+        application.registerReceiver(homeKeyPressReceiver, iFilter);
+
+// delete when destory thi activity
+application.unregisterReceiver(homeKeyPressReceiver);
+        homeKeyPressReceiver = null;
+
